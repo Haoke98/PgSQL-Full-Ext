@@ -38,9 +38,10 @@ docker build -t psql-full-ext:14-1.0 .
 ### TODO
 
 * [ ]  Optimize the image size:
-* [ ] remove redundant software and installation packages after all installations are completed
-* [ ] delete caches.
-* [ ] apt autorremove.
+    * [ ] remove redundant software and installation packages after all installations are completed
+    * [ ] delete caches.
+    * [ ] apt autorremove.
+* [ ] Implement plug-in installation source for use at home and abroad
 
 ### Final
 ```shell
