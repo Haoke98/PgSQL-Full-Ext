@@ -24,8 +24,20 @@ postgres=#
 
 ### Use
 
+```shell
+docker run -p 65432:5432 --name pg14-full -e POSTGRES_PASSWORD=mysecretpassword -d psql-full-ext:14-1.0
+```
+
+
 ### Build
 
 ```shell
 docker build -t psql-full-ext:14-1.0 .
 ```
+
+### TODO
+
+* [ ]  Optimize the image size:
+* [ ] remove redundant software and installation packages after all installations are completed
+* [ ] delete caches.
+* [ ] apt autorremove.
