@@ -9,9 +9,14 @@ RUN apt-get install -y bzip2
 RUN apt-get install -y g++
 RUN apt-get install -y postgresql-server-dev-14
 RUN apt-get install -y libboost-graph-dev
-RUN wget http://www.xunsearch.com/scws/down/scws-1.2.1.tar.bz2 -O /home/scws-1.2.1.tar.bz2
-RUN tar xjf /home/scws-1.2.1.tar.bz2 -C /home
-RUN cd /home/scws-1.2.1 ; ./configure ; make install
 # 安装语言包
 COPY ./locale.gen /etc/locale.gen
 RUN locale-gen
+# 安装 libscws-dev , 就因zhparser需要
+RUN cd /home; wget -q -O - http://www.xunsearch.com/scws/down/scws-1.2.1.tar.bz2 | tar xjf - ;
+RUN cd /home/scws-1.2.1 ; ./configure ; make install
+# 安装 zhparser:2.2
+RUN cd /home; wget -q -O - https://gitee.com/sadam98/zhparser/releases/download/V2.2/zhparser-2.2.tar.gz | tar xvzf - ; cd /home/zhparser-2.2; PG_CONFIG=/usr/lib/postgresql/14/bin/pg_config make && make install
+# 安装 pg_jieba:2.0.1
+RUN cd /home; wget -q -O - https://gitee.com/sadam98/pg_jieba/releases/download/v2.0.1/pg_jieba-2.0.1-full.tar.gz | tar xvzf - ;
+RUN cd /home/pg_jieba; mkdir build; cd build;cmake -DPostgreSQL_TYPE_INCLUDE_DIR=/usr/include/postgresql/14/server .. ; make; make install

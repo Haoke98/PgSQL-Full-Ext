@@ -27,5 +27,5 @@ postgres=#
 ### Build
 
 ```shell
-docker build -t psql-full-ext
+docker build -t psql-full-ext:14-1.0 .
 ```
