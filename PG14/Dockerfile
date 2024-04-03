@@ -24,4 +24,5 @@ RUN cd /home/pg_jieba; mkdir build; cd build;cmake -DPostgreSQL_TYPE_INCLUDE_DIR
 RUN cd /home; wget -q -O - https://gitee.com/sadam98/pgrouting/releases/download/v3.1.4/pgrouting-3.1.4.tar.gz | tar xvzf - ;
 RUN cd /home/pgrouting-3.1.4; mkdir build; cd build; cmake -DPostgreSQL_TYPE_INCLUDE_DIR=/usr/include/postgresql/14/server .. ; make; make install
 
-# 加载Extensions
+COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/10_postgis.sh
+RUN chmod +x /docker-entrypoint-initdb.d/10_postgis.sh
