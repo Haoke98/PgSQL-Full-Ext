@@ -32,4 +32,4 @@ RUN rm -rf /home/pgrouting-3.1.4
 RUN rm -rf /var/lib/apt/lists/*
 
 COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/10_postgis.sh
-RUN chmod +x /docker-entrypoint-initdb.d/10_postgis.sh
+RUN chmod 644 /docker-entrypoint-initdb.d/10_postgis.sh
