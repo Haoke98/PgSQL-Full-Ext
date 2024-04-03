@@ -20,3 +20,8 @@ RUN cd /home; wget -q -O - https://gitee.com/sadam98/zhparser/releases/download/
 # 安装 pg_jieba:2.0.1
 RUN cd /home; wget -q -O - https://gitee.com/sadam98/pg_jieba/releases/download/v2.0.1/pg_jieba-2.0.1-full.tar.gz | tar xvzf - ;
 RUN cd /home/pg_jieba; mkdir build; cd build;cmake -DPostgreSQL_TYPE_INCLUDE_DIR=/usr/include/postgresql/14/server .. ; make; make install
+# 安装 pgrouting:3.1.4
+RUN cd /home; wget -q -O - https://gitee.com/sadam98/pgrouting/releases/download/v3.1.4/pgrouting-3.1.4.tar.gz | tar xvzf - ;
+RUN cd /home/pgrouting-3.1.4; mkdir build; cd build; cmake -DPostgreSQL_TYPE_INCLUDE_DIR=/usr/include/postgresql/14/server .. ; make; make install
+
+# 加载Extensions
